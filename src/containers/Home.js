@@ -10,12 +10,12 @@ export default class Home extends Component {
     return (
       <Background>
         <div className="menu">
-          <div className="content">
+          <div className="container">
             <Title />
             <div className="buttons">
               <button onClick={() => history.push('/play')}>Play</button>
               <button onClick={() => history.push('/scores')}>Highscores</button>
-              <button onClick={() => history.push('/about')}>About</button>
+              <button onClick={() => history.push('/about')}><span>About</span></button>
             </div>
           </div>
         </div>

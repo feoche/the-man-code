@@ -27,7 +27,7 @@
   }
 
   .progress-bar {
-    margin: -1.5vw -0.5vw;
+    margin: -1.5vw 0 -1.5vw -3.8vw;
 
     li {
       transition: all 0.1s;
@@ -41,6 +41,10 @@
       display: inline-block;
       color: white;
       position: relative;
+
+      &:first-child:before {
+        display: none;
+      }
 
       &:before{
         content: '';
