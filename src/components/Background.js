@@ -1,17 +1,15 @@
 import React from 'react';
 
-const Background = ({ children }) => (
-  <div>
-    {children}
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-);
+const Background = ({ children }) => {
+  const lists = Array.apply(null, Array(6)).map(() => <li/>);
+  return (
+    <div>
+      {children}
+      <ul>
+        {lists}
+      </ul>
+    </div>
+  )
+};
 
 export default Background;

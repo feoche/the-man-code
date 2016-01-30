@@ -7,15 +7,19 @@ export default class Root extends Component {
   render() {
     return (
       <Background>
-        <div className="content">
-          <Title>Code de conduite</Title>
-          <div className="subtitle">
-            pour les <small>(vrais)</small> mâles
-          </div>
-          <div className="buttons">
-            <button>Jouer</button>
-            <button>Meilleurs scores</button>
-            <button>A propos</button>
+        <div className="menu">
+          <div className="content">
+            <Title></Title>
+            <div className="subtitle">
+              pour les
+              <small>(vrais)</small>
+              mâles
+            </div>
+            <div className="buttons">
+              <button>Jouer</button>
+              <button>Meilleurs scores</button>
+              <button>A propos</button>
+            </div>
           </div>
         </div>
       </Background>

@@ -1,0 +1,109 @@
+.menu {
+  background: #54C3BC;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .content {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      left: 0;
+    }
+  }
+
+  .title {
+    background: url('http://localhost:1337/assets/img/logoGGJ16.png');
+    background-size: contain;
+    color: white;
+    text-shadow: 0 0 23px black;
+    margin: 10px auto;
+    width: 80vw;
+    height: 20vw;
+  }
+
+  .subtitle {
+    font-family: 'Yellowtail', cursive;
+    font-size: 40px;
+    color: white;
+    text-shadow: 0 0 23px black;
+
+    @media screen and (max-width: 768px) {
+      font-size: 8vw;
+    }
+
+    small {
+      font-size: 20px;
+      margin-right: 5px;
+      text-shadow: 0 0 13px black;
+    }
+  }
+
+  .buttons {
+    margin-top: 20px;
+
+    button {
+      font-family: 'Yellowtail', cursive;
+      display: block;
+      border: solid 3px white;
+      border-radius: 36px;
+      padding: 12px 55px;
+      margin: 30px auto;
+      cursor: pointer;
+      font-size: 30px;
+      color: #fff;
+      text-transform: none;
+      transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+      background: transparent;
+      animation: incoming 2s;
+      opacity: 1;
+
+      &:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      &:hover, &:active {
+        outline: none;
+        background: white;
+        color: #54C3BC;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 15px auto;
+      }
+    }
+  }
+
+}
+ul {
+  padding: 0;
+  margin: 0;
+  transform: rotate(-25deg) translate(-5%, 85vh);
+
+  @media screen and (max-width: 1024px) {
+    transform: rotate(-25deg) translate(-25%, 93vh);
+  }
+
+  li {
+    padding: 0;
+    margin: 0 0 15px;
+    list-style: none;
+    display: block;
+    height: 40px;
+    width: 200%;
+    background: white;
+
+    &:nth-child(2n) {
+      background: #EE99C2;
+    }
+  }
+}
