@@ -13,12 +13,12 @@ export default class Home extends Component {
           <div className="content">
             <Title />
             <div className="subtitle">
-              pour les <small>(vrais)</small> mâles
+              for <small>(tough)</small> males
             </div>
             <div className="buttons">
-              <button onClick={() => history.push('/play')}>Jouer</button>
-              <button onClick={() => history.push('/scores')}>Meilleurs scores</button>
-              <button onClick={() => history.push('/about')}>&Agrave; propos</button>
+              <button onClick={() => history.push('/play')}>Play</button>
+              <button onClick={() => history.push('/scores')}>Highscores</button>
+              <button onClick={() => history.push('/about')}>About</button>
             </div>
           </div>
         </div>

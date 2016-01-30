@@ -5,7 +5,7 @@ const Background = ({ children }) => {
   return (
     <div>
       {children}
-      <ul>
+      <ul className="bg-strips">
         {lists}
       </ul>
     </div>

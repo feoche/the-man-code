@@ -1,4 +1,4 @@
-html, body, #app, #app>div, .content {
+html, body, #app, #app > div, .content {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -8,13 +8,24 @@ html, body, #app, #app>div, .content {
   overflow: hidden;
 }
 
-@keyframes incoming{
-   from {
-     transform: translateY(-20px);
-     opacity: 0;
-   }
-   to {
-     opacity: 1;
-     transform: translateY(0);
-   }
- }
+@keyframes incoming {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  from {
+    background: #2b8c37;
+    border: solid 3px #999;
+  }
+  to {
+    background: #111;
+    border: solid 3px transparent;
+  }
+}

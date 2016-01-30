@@ -50,7 +50,6 @@
     button {
       font-family: 'Yellowtail', cursive;
       display: block;
-      border: solid 3px white;
       border-radius: 36px;
       padding: 12px 55px;
       margin: 30px auto;
@@ -59,15 +58,17 @@
       color: #fff;
       text-transform: none;
       transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-      background: transparent;
+      background: url('../assets/img/mustache1.png');
       animation: incoming 2s;
       opacity: 1;
 
       &:nth-child(2) {
+        background: url('../assets/img/mustache2.png');
         animation-delay: 0.3s;
       }
 
       &:nth-child(3) {
+        background: url('../assets/img/mustache3.png');
         animation-delay: 0.6s;
       }
 
@@ -84,7 +85,7 @@
   }
 
 }
-ul {
+.bg-strips {
   padding: 0;
   margin: 0;
   transform: rotate(-25deg) translate(-5%, 85vh);
