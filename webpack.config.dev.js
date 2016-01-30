@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client',
     './src/index'
   ],
@@ -16,6 +17,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.scss']
+  },
   module: {
     loaders: [{
       test: /\.jsx?/,
@@ -23,7 +27,7 @@ module.exports = {
       include: path.join(__dirname, 'src')
     },{
       test: /\.scss$/,
-      loader: 'style!css?sourceMap!sass?sourceMap',
+      loaders: ['style', 'css?sourceMap', 'resolve-url', 'sass?sourceMap'],
       include: path.join(__dirname, 'scss')
     },{
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -32,7 +36,7 @@ module.exports = {
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: "file-loader"
     },{
-      test: /\.png$/, loader: "url-loader?limit=100000"
+      test: /\.png$/, loader: "file-loader"
     },{
       test: /\.jpg$/, loader: "file-loader"
     }]
