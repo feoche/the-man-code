@@ -12,9 +12,6 @@ export default class Home extends Component {
         <div className="menu">
           <div className="content">
             <Title />
-            <div className="subtitle">
-              for <small>(tough)</small> males
-            </div>
             <div className="buttons">
               <button onClick={() => history.push('/play')}>Play</button>
               <button onClick={() => history.push('/scores')}>Highscores</button>

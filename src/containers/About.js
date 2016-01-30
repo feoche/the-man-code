@@ -11,14 +11,9 @@ export default class About extends Component {
         <div className="menu">
           <div className="content">
             <Title />
-            <div className="subtitle">
-              pour les
-              <small>(vrais)</small>
-              mâles
-            </div>
             <div>About content here</div>
             <div className="buttons">
-              <button onClick={history.push('/')}>Take me back !</button>
+              <button onClick={() => history.push('/')}>Take me back !</button>
             </div>
           </div>
         </div>
