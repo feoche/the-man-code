@@ -11,15 +11,12 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: 'http://localhost:1337/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.scss']
-  },
   module: {
     loaders: [{
       test: /\.jsx?/,
@@ -27,18 +24,16 @@ module.exports = {
       include: path.join(__dirname, 'src')
     },{
       test: /\.scss$/,
-      loaders: ['style', 'css?sourceMap', 'resolve-url', 'sass?sourceMap'],
+      loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
       include: path.join(__dirname, 'scss')
     },{
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "url-loader?limit=10000&minetype=application/font-woff"
+      loader: "url?limit=10000&minetype=application/font-woff"
     },{
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "file-loader"
+      loader: "file"
     },{
-      test: /\.png$/, loader: "file-loader"
-    },{
-      test: /\.jpg$/, loader: "file-loader"
+      test: /\.(png|jpg)$/, loader: "url?limit=10000&name=[path][name].[ext]?[hash]"
     }]
   }
 };
