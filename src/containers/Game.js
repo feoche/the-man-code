@@ -11,6 +11,7 @@ export default class Game extends Component {
   constructor() {
     super();
     this.state = {
+      score: 0,
       nextQuestion: false,
       showSolution: false,
       selectedAnswer: null,
@@ -39,19 +40,51 @@ export default class Game extends Component {
     if (this.state.showSolution) {
       this.setState({nextQuestion: true});
     } else {
+      if(this.state.questions[this.state.currentQuestionIndex].winningAnswer === this.state.selectedAnswer) {
+        this.setState({ score: this.state.score + 1000 });
+      }
       this.setState({showSolution: true});
     }
   }
 
+  sendScore(score) {
+    var postsRef = firebaseRoot.child("scores") || (firebaseRoot.set({"scores": {}}));
+    firebaseRoot.authWithOAuthPopup("twitter", function (error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+        // Try unAuthenticated
+        firebaseRoot.authAnonymously(function (error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+            var username = prompt("Please enter your username", "");
+            postsRef.push({
+              username: username || "Anonymous",
+              score: score
+            });
+          }
+        });
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        postsRef.push({
+          username: authData.twitter && authData.twitter.username,
+          score: score
+        });
+      }
+    });
+  }
+
   nextQuestion() {
-    const nextIndex = function(db, key) {
+    const nextIndex = function (db, key) {
       const keys = Object.keys(db), i = keys.indexOf(key);
       return i !== -1 && keys[i + 1];
     };
 
     const nextQuestionIndex = nextIndex(this.state.questions, this.state.currentQuestionIndex);
-    if(!nextQuestionIndex) {
-      history.push('/scores');
+    if (!nextQuestionIndex) {
+      this.sendScore(this.state.score);
+      history.push('/highscores');
     }
 
     this.setState({
@@ -65,12 +98,13 @@ export default class Game extends Component {
   render() {
     const { currentQuestionIndex, questions, selectedAnswer } = this.state;
 
-    if(!questions) {
+    if (!questions) {
       return (
         <div className="game-main">
           <div className="magnum-spinner">
             <div>
-              <img src={require('../../assets/img/seleck.png')} alt="" />
+              <img src={require('../../assets/img/seleck.png')} alt=""/>
+
               <p>Loading...</p>
             </div>
           </div>
@@ -84,12 +118,12 @@ export default class Game extends Component {
       const selectedOrSolutionClasses = this.state.showSolution ? {
         'success': i === currentQuestion.winningAnswer,
         'error': selectedAnswer === i && i !== currentQuestion.winningAnswer
-      } : { 'active': selectedAnswer === i };
+      } : {'active': selectedAnswer === i};
       const classNames = classnames('item', selectedAnswer !== null ? selectedOrSolutionClasses : false);
 
       return (
         <span>
-          <a onClick={() => this.selectItem(i)} className={classNames}>{answer.label}</a>
+          <a onClick={() => this.selectItem(i)} className={classNames}>{answer}</a>
         </span>
       );
     });
@@ -120,11 +154,15 @@ export default class Game extends Component {
             onEnd={this.showSolutionVideo.bind(this)}
             />
         </div>
-        <ProgressBar steps={Object.keys(questions).length} current={Object.keys(questions).indexOf(currentQuestionIndex)} />
+        <ProgressBar steps={Object.keys(questions).length}
+                     current={Object.keys(questions).indexOf(currentQuestionIndex)}/>
+
         <div className="text">
-          <div className="question">{currentQuestion.label}</div>
+          <div className="question">{currentQuestion.title}</div>
           <div className="answers">
-            {this.state.nextQuestion ? <div className="answers"><span><a onClick={this.nextQuestion.bind(this)} className="item">Next&nbsp;&rarr;</a></span></div> : answers}
+            {this.state.nextQuestion ? <div className="answers"><span><a onClick={this.nextQuestion.bind(this)}
+                                                                         className="item">Next&nbsp;&rarr;</a></span>
+            </div> : answers}
           </div>
         </div>
       </div>

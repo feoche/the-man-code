@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+.bg {
+  overflow: hidden;
+}
+
 @keyframes incoming {
   0%, 70% {
     opacity: 0;

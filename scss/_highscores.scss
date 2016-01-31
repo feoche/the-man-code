@@ -42,6 +42,12 @@
       font-family: 'Yellowtail', cursive;
       font-size: 3vw;
 
+      a {
+        margin-top: -5vw;
+        text-decoration: none;
+        color: #457086;
+      }
+
       &:nth-of-type(2) {
         text-align: right;
       }

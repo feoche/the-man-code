@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory as history } from 'react-router';
+import firebaseRoot from '../firebaseRoot';
 
 export default class Highscores extends Component {
   constructor() {
@@ -10,8 +11,8 @@ export default class Highscores extends Component {
   }
 
   retrieveScores() {
-    var ref = new Firebase("https://code-de-conduite.firebaseIO.com/scores");
-    ref.on("value", (data) => {
+    var ref = firebaseRoot.child("scores");
+    ref.orderByChild("score").on("value", (data) => {
       this.setState({rows: data.val()});
     });
   }
@@ -21,8 +22,6 @@ export default class Highscores extends Component {
   }
 
   render() {
-    const username = 'Flavien de la Vega';
-    const score = '999999999999';
     return (
       <div className="highscores">
         <div className="container">
@@ -31,10 +30,10 @@ export default class Highscores extends Component {
             {Object.keys(this.state.rows).map((key) => (
               <div className="row">
               <span className="column">
-                {key}
+                <a href="https://twitter.com/{this.state.rows[key].username}">@{this.state.rows[key].username}</a>
               </span>
               <span className="column">
-                {this.state.rows[key]}
+                {this.state.rows[key].score}
               </span>
               </div>
             ))}

@@ -11,6 +11,10 @@ export default class Create extends Component {
     this.setState({answerUrl: e.target.value});
   }
 
+  handleTitleChange(e) {
+    this.setState({title: e.target.value});
+  }
+
   handleAnswerAChange(e) {
     this.setState({answerA: e.target.value});
   }
@@ -35,14 +39,15 @@ export default class Create extends Component {
     var postsRef = firebaseRoot.child("questions");
     postsRef.push({
       answers: [
-        {label:this.state.answerA},
-        {label:this.state.answerB},
-        {label:this.state.answerC},
-        {label:this.state.answerD}
+        this.state.answerA,
+        this.state.answerB,
+        this.state.answerC,
+        this.state.answerD
       ],
+      title: this.state.title,
       situationUrl: this.state.situationUrl,
       answerUrl: this.state.answerUrl,
-      winningAnswer: this.state.winningAnswer || "A"
+      winningAnswer: parseInt(this.state.winningAnswer) || 0
     });
   }
 
@@ -70,6 +75,13 @@ export default class Create extends Component {
             </div>
             <div>
               <label>
+                Question :
+              </label>
+              <input type="text" name="title" placeholder="Title of the question"
+                     onChange={this.handleTitleChange.bind(this)}/>
+            </div>
+            <div>
+              <label>
                 Choices :
               </label>
 
@@ -89,10 +101,10 @@ export default class Create extends Component {
                 Winning answer :
               </label>
               <select name="winningAnswer" onChange={this.handleWinningAnswerChange.bind(this)}>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
+                <option value="0">A</option>
+                <option value="1">B</option>
+                <option value="2">C</option>
+                <option value="3">D</option>
               </select>
             </div>
             <button onClick={this.sendMCG.bind(this)}>Send</button>
