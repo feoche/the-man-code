@@ -1,0 +1,110 @@
+.create {
+  background: url('../assets/img/fond.png') no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  .container {
+    background: beige;
+    opacity: 0.9;
+    padding: 3vw;
+
+    h1 {
+      font-family: 'Monoton', cursive;
+      font-size: 4vw;
+      margin: 5px;
+      line-height: 4vw;
+    }
+  }
+
+  .form {
+    > div {
+      margin: 20px;
+    }
+
+    label {
+      font-family: 'Yellowtail', cursive;
+      font-size: 3vw;
+      text-align: left;
+      display: inline-block;
+      vertical-align: middle;
+
+      + input, + select {
+        display: inline-block;
+        float: right;
+        vertical-align: middle;
+        margin-left: 5px;
+        margin-top: 1.5vw;
+        min-width: 50%;
+      }
+
+      + div {
+        input {
+          display: block;
+          width: 100%;
+          margin: 2px 0;
+        }
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      outline: none;
+      font-family: 'Yellowtail', cursive;
+      border: solid 3px #999;
+      border-radius: 10px;
+      line-height: 4vw;
+      padding: 12px 55px;
+      margin: 10px auto;
+      cursor: pointer;
+      font-size: 4vw;
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+      transform: translate(0);
+      background: #111;
+      box-shadow: rgb(41, 41, 41) 1px 1px,
+      rgb(41, 41, 41) 2px 2px,
+      rgb(41, 41, 41) 3px 3px,
+      rgb(41, 41, 41) 4px 4px,
+      rgb(41, 41, 41) 5px 5px,
+      rgb(41, 41, 41) 6px 6px,
+      rgb(51, 51, 51) 7px 7px;
+      align-items: center;
+      text-align: center;
+      box-sizing: border-box;
+      text-rendering: auto;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-transform: none;
+      text-shadow: none;
+
+      &:hover {
+        box-shadow: rgb(41, 41, 41) 1px 1px,
+        rgb(41, 41, 41) 2px 2px,
+        rgb(41, 41, 41) 3px 3px;
+        transform: translate(1px, 1px);
+      }
+
+      &.active, &:hover.active {
+        text-shadow: 0 0 5px #111;
+        box-shadow: none;
+        transform: translate(3px, 3px);
+        background: #1F1E3E;
+        border: solid 3px transparent;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 15px auto;
+      }
+    }
+  }
+}
