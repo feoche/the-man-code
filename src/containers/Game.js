@@ -15,7 +15,7 @@ export default class Game extends Component {
       showSolution: false,
       selectedAnswer: null,
       currentQuestionIndex: 0,
-      questions: null,
+      questions: null
     };
   }
 
@@ -31,7 +31,7 @@ export default class Game extends Component {
 
   selectItem(number) {
     this.setState({
-      selectedAnswer: number,
+      selectedAnswer: number
     });
   }
 
@@ -58,7 +58,7 @@ export default class Game extends Component {
       nextQuestion: false,
       showSolution: false,
       selectedAnswer: null,
-      currentQuestionIndex: nextQuestionIndex,
+      currentQuestionIndex: nextQuestionIndex
     });
   }
 
@@ -83,7 +83,7 @@ export default class Game extends Component {
     const answers = currentQuestion.answers.map((answer, i) => {
       const selectedOrSolutionClasses = this.state.showSolution ? {
         'success': i === currentQuestion.winningAnswer,
-        'error': selectedAnswer === i && i !== currentQuestion.winningAnswer,
+        'error': selectedAnswer === i && i !== currentQuestion.winningAnswer
       } : { 'active': selectedAnswer === i };
       const classNames = classnames('item', selectedAnswer !== null ? selectedOrSolutionClasses : false);
 

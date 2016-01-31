@@ -15,7 +15,7 @@ export default class Home extends Component {
             <div className="buttons">
               <button onClick={() => history.push('/play')}>Play</button>
               <button onClick={() => history.push('/create')}>Create</button>
-              <button onClick={() => history.push('/scores')}><span>Highscores</span></button>
+              <button onClick={() => history.push('/highscores')}><span>Highscores</span></button>
               <button onClick={() => history.push('/about')}><span>About</span></button>
             </div>
           </div>
