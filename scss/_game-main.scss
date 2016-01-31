@@ -107,11 +107,8 @@
       font-family: 'Yellowtail', cursive;
       color: white;
       animation: incoming 2s;
-      font-size: 5vw;
-
-      @media screen and (min-width: 1024px) {
-        font-size: 3vw;
-      }
+        font-size: 2.5vw;
+        line-height: 2.5vw;
     }
 
     .answers {
@@ -188,11 +185,10 @@
           font-family: 'Yellowtail', cursive;
           border: solid 3px #999;
           border-radius: 10px;
-          line-height: 4vw;
+          line-height: 2.5vw;
+          font-size: 2.5vw;
           padding: 12px 55px;
-          margin: 10px auto;
           cursor: pointer;
-          font-size: 4vw;
           color: #fff;
           transition: all 0.3s ease-in-out;
           transform: translate(0);
@@ -249,10 +245,6 @@
             min-height: initial;
             font-size: 4vw;
             padding: 7px 55px;
-          }
-
-          @media screen and (min-width: 1024px) {
-            font-size: 2.5vw;
           }
         }
       }

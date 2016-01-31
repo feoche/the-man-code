@@ -7,8 +7,10 @@
   right: 0;
 
   .content {
+    background: #54C3BC;
     text-align: center;
     margin: auto;
+    padding-bottom: 30px;
 
     .title {
       background: url('../assets/img/logoGGJ16.png');
@@ -59,6 +61,7 @@
         font-weight: bold;
         font-size: 5vw;
         letter-spacing: 2px;
+        text-shadow: 0 0 13px black;
       }
     }
 

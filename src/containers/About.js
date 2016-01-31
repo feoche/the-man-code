@@ -7,11 +7,11 @@ import Title from '../components/Title';
 export default class About extends Component {
   render() {
     return (
-      <Background>
-        <div className="about">
-          <div className="content">
-            <div className="title"></div>
-            <div className="character">
+    <div className="bg">
+      <div className="about">
+        <div className="content">
+          <div className="title"></div>
+          <div className="character">
               <span>
                 <img src="https://pbs.twimg.com/profile_images/662405657979654144/bzYQE3Qz_400x400.jpg"/>
                 <a href="https://twitter.com/FlavienAuffret">@FlavienAuffret</a>
@@ -24,8 +24,8 @@ export default class About extends Component {
                   Entertainment - Pubic relation - Shake That Ass Maker - Scripting
                 </div>
               </span>
-            </div>
-            <div className="character">
+          </div>
+          <div className="character">
               <span>
                 <img src="https://pbs.twimg.com/profile_images/566924821133422593/-So3Vg2x_400x400.png"/>
                 <a href="https://twitter.com/YoruNoHikage">@YoruNoHikage</a>
@@ -38,8 +38,8 @@ export default class About extends Component {
                   Lead Developer - Talented actor - Sleepy guy
                 </div>
               </span>
-            </div>
-            <div className="character">
+          </div>
+          <div className="character">
               <span>
                 <img src="https://pbs.twimg.com/profile_images/646818795877715968/kX9LcqdA_400x400.jpg"/>
                 <a href="https://twitter.com/feoche">@feoche</a>
@@ -52,13 +52,11 @@ export default class About extends Component {
                   Developer - Graphical design - Weirdo
                 </div>
               </span>
-            </div>
-            <div className="buttons">
-              <button onClick={() => history.push('/')}>Take me back !</button>
-            </div>
           </div>
+          <button onClick={() => history.push('/')}>Take me back !</button>
         </div>
-      </Background>
+      </div>
+    </div>
     );
   }
 }
