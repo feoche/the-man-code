@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: 'static/'
   },
   postcss: function () {
     return [autoprefixer];
@@ -48,6 +48,9 @@ module.exports = {
       loader: "file"
     },{
       test: /\.(png|jpg)$/, loader: "url?limit=10000&name=[path][name].[ext]?[hash]"
+    },{
+      test: /\.mp3$/,
+      loader: "file"
     }]
   }
 };
