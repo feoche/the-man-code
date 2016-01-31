@@ -71,7 +71,7 @@
       animation: incoming 2s;
       border: none;
       z-index: 1;
-      -webkit-filter: invert(0%) drop-shadow(3px 3px 0px #777);
+      filter: invert(0%) drop-shadow(3px 3px 0px #777);
 
       &:nth-child(1) {
         background: url('../assets/img/mustache1.png') center  no-repeat;
@@ -120,7 +120,7 @@
 
       &:hover, &:active {
         outline: none;
-        -webkit-filter: invert(100%) drop-shadow(3px 3px 0px #777);
+        filter: invert(100%) drop-shadow(3px 3px 0px #777);
       }
 
       @media screen and (max-width: 768px) {

@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -13,6 +14,9 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: 'http://localhost:1337/static/'
   },
+  postcss: function () {
+    return [autoprefixer];
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
@@ -24,7 +28,7 @@ module.exports = {
       include: path.join(__dirname, 'src')
     },{
       test: /\.scss$/,
-      loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
+      loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap'],
       include: path.join(__dirname, 'scss')
     },{
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
