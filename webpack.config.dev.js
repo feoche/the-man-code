@@ -38,6 +38,9 @@ module.exports = {
       loader: "file"
     },{
       test: /\.(png|jpg)$/, loader: "url?limit=10000&name=[path][name].[ext]?[hash]"
+    },{
+      test: /\.mp3$/,
+      loader: "file"
     }]
   }
 };

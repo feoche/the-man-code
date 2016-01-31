@@ -40,8 +40,8 @@ export default class Game extends Component {
     if (this.state.showSolution) {
       this.setState({nextQuestion: true});
     } else {
-      if(this.state.questions[this.state.currentQuestionIndex].winningAnswer === this.state.selectedAnswer) {
-        this.setState({ score: this.state.score + 1000 });
+      if (this.state.questions[this.state.currentQuestionIndex].winningAnswer === this.state.selectedAnswer) {
+        this.setState({score: this.state.score + 1000});
       }
       this.setState({showSolution: true});
     }
@@ -158,7 +158,7 @@ export default class Game extends Component {
                      current={Object.keys(questions).indexOf(currentQuestionIndex)}/>
 
         <div className="text">
-          <div className="question">{currentQuestion.title}</div>
+          {this.state.nextQuestion ? '': <div className="question">{currentQuestion.title}</div>}
           <div className="answers">
             {this.state.nextQuestion ? <div className="answers"><span><a onClick={this.nextQuestion.bind(this)}
                                                                          className="item">Next&nbsp;&rarr;</a></span>
