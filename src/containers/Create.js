@@ -15,20 +15,8 @@ export default class Create extends Component {
     this.setState({title: e.target.value});
   }
 
-  handleAnswerAChange(e) {
-    this.setState({answerA: e.target.value});
-  }
-
-  handleAnswerBChange(e) {
-    this.setState({answerB: e.target.value});
-  }
-
-  handleAnswerCChange(e) {
-    this.setState({answerC: e.target.value});
-  }
-
-  handleAnswerDChange(e) {
-    this.setState({answerD: e.target.value});
+  handleAnswerChange(e, letter) {
+    this.setState({[`answer${letter}`]: e.target.value});
   }
 
   handleWinningAnswerChange(e) {
@@ -36,19 +24,37 @@ export default class Create extends Component {
   }
 
   sendMCG() {
+    const {
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      title,
+      situationUrl,
+      answerUrl,
+      winningAnswer,
+    } = this.state;
+
+    if(!(answerA && answerB && answerC && answerD && title && situationUrl && answerUrl && winningAnswer)) {
+      alert("You didn't fill everything!");
+      return;
+    }
+
     var postsRef = firebaseRoot.child("questions");
     postsRef.push({
       answers: [
-        this.state.answerA,
-        this.state.answerB,
-        this.state.answerC,
-        this.state.answerD
+        answerA,
+        answerB,
+        answerC,
+        answerD
       ],
-      title: this.state.title,
-      situationUrl: this.state.situationUrl,
-      answerUrl: this.state.answerUrl,
-      winningAnswer: parseInt(this.state.winningAnswer) || 0
+      title,
+      situationUrl,
+      answerUrl,
+      winningAnswer: parseInt(winningAnswer) || 0
     });
+
+    alert("Success !");
   }
 
   render() {
@@ -63,14 +69,14 @@ export default class Create extends Component {
               <label>
                 Situation video :
               </label>
-              <input type="text" name="situationUrl" placeholder="Video URL (YouTube for instance)"
+              <input type="text" name="situationUrl" placeholder="Video URL : ID YouTube"
                      onChange={this.handleSituationUrlChange.bind(this)}/>
             </div>
             <div>
               <label>
                 Answer video :
               </label>
-              <input type="text" name="answerUrl" placeholder="Video URL (YouTube for instance)"
+              <input type="text" name="answerUrl" placeholder="Video URL : ID YouTube"
                      onChange={this.handleAnswerUrlChange.bind(this)}/>
             </div>
             <div>
@@ -86,14 +92,10 @@ export default class Create extends Component {
               </label>
 
               <div>
-                <input type="text" name="answerA" placeholder="Answer A"
-                       onChange={this.handleAnswerAChange.bind(this)}/>
-                <input type="text" name="answerB" placeholder="Answer B"
-                       onChange={this.handleAnswerBChange.bind(this)}/>
-                <input type="text" name="answerC" placeholder="Answer C"
-                       onChange={this.handleAnswerCChange.bind(this)}/>
-                <input type="text" name="answerD" placeholder="Answer D"
-                       onChange={this.handleAnswerDChange.bind(this)}/>
+                {['A', 'B', 'C', 'D'].map((letter, i) => (
+                  <input type="text" name={`answer${letter}`} placeholder={`Answer ${letter}`}
+                         onChange={(e) => this.handleAnswerChange(e, letter)}/>
+                ))}
               </div>
             </div>
             <div>
@@ -101,10 +103,7 @@ export default class Create extends Component {
                 Winning answer :
               </label>
               <select name="winningAnswer" onChange={this.handleWinningAnswerChange.bind(this)}>
-                <option value="0">A</option>
-                <option value="1">B</option>
-                <option value="2">C</option>
-                <option value="3">D</option>
+                {['A', 'B', 'C', 'D'].map((letter, i) => <option value={i}>{letter}</option>)}
               </select>
             </div>
             <button onClick={this.sendMCG.bind(this)}>Send</button>
