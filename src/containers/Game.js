@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
 import classnames from 'classnames';
+import { browserHistory as history } from 'react-router';
 
 import firebaseRoot from '../firebaseRoot';
 
@@ -20,8 +21,10 @@ export default class Game extends Component {
 
   componentWillMount() {
     firebaseRoot.child('questions').once("value", (data) => {
+      const questions = data.val();
       this.setState({
-        questions: data.val(),
+        questions,
+        currentQuestionIndex: Object.keys(questions)[0]
       });
     });
   }
@@ -40,11 +43,34 @@ export default class Game extends Component {
     }
   }
 
+  nextQuestion() {
+    const nextIndex = function(db, key) {
+      const keys = Object.keys(db), i = keys.indexOf(key);
+      return i !== -1 && keys[i + 1];
+    };
+
+    const nextQuestionIndex = nextIndex(this.state.questions, this.state.currentQuestionIndex);
+    if(!nextQuestionIndex) {
+      history.push('/scores');
+    }
+
+    this.setState({
+      nextQuestion: false,
+      showSolution: false,
+      selectedAnswer: null,
+      currentQuestionIndex: nextQuestionIndex,
+    });
+  }
+
   render() {
     const { currentQuestionIndex, questions, selectedAnswer } = this.state;
 
     if(!questions) {
-      return <div>Loading</div>;
+      return (
+        <div className="game-main">
+          <img src="http://itp.coleorloff.com/wp-content/uploads/2015/02/Seleck.png" alt="" />
+        </div>
+      );
     }
 
     const currentQuestion = questions[currentQuestionIndex];
@@ -89,11 +115,11 @@ export default class Game extends Component {
             onEnd={this.showSolutionVideo.bind(this)}
             />
         </div>
-        <ProgressBar steps={questions.length} current={currentQuestionIndex} />
+        <ProgressBar steps={Object.keys(questions).length} current={Object.keys(questions).indexOf(currentQuestionIndex)} />
         <div className="text">
           <div className="question">{currentQuestion.label}</div>
           <div className="answers">
-            {this.state.nextQuestion ? <span><a className="item">Next&nbsp;&rarr;</a></span> : answers}
+            {this.state.nextQuestion ? <span><a onClick={this.nextQuestion.bind(this)} className="item">Next&nbsp;&rarr;</a></span> : answers}
           </div>
         </div>
       </div>
