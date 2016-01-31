@@ -119,7 +119,7 @@ export default class Game extends Component {
         <div className="text">
           <div className="question">{currentQuestion.label}</div>
           <div className="answers">
-            {this.state.nextQuestion ? <span><a onClick={this.nextQuestion.bind(this)} className="item">Next&nbsp;&rarr;</a></span> : answers}
+            {this.state.nextQuestion ? <div className="answers"><span><a onClick={this.nextQuestion.bind(this)} className="item">Next&nbsp;&rarr;</a></span></div> : answers}
           </div>
         </div>
       </div>

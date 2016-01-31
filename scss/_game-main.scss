@@ -19,6 +19,10 @@
     > .video {
       max-width: 100%;
       max-height: 315px;
+
+      @media screen and (max-width: 768px) {
+        max-height: 200px;
+      }
     }
 
     @media screen and (max-width: 768px) {
@@ -96,6 +100,8 @@
 
     .answers {
       margin: 20px 0;
+      display: table;
+      width: 100%;
 
       @media screen and (max-width: 768px) {
         text-align: center;
@@ -103,10 +109,12 @@
       }
 
       span {
+        display: inline-block;
         padding: 10px;
-        width: 45%;
         animation: incoming 2s;
         opacity: 1;
+        width: 45%;
+        vertical-align: top;
 
         &:nth-of-type(1) {
           animation-delay: 0.3s;
@@ -122,16 +130,6 @@
 
         &:nth-of-type(4) {
           animation-delay: 1.2s;
-        }
-
-        &:nth-child(n) {
-          float: left;
-          text-align: right;
-        }
-
-        &:nth-child(2n) {
-          float: right;
-          text-align: left;
         }
 
         &:nth-of-type(n) > .item:hover {
