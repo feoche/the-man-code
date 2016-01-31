@@ -16,7 +16,7 @@
     margin: 20px 20px 0;
     overflow: hidden;
 
-    >img {
+    > .video {
       max-width: 100%;
       max-height: 315px;
     }
@@ -101,7 +101,7 @@
         margin: 1vh 0;
       }
 
-      > span {
+      span {
         padding: 10px;
         width: 45%;
         animation: incoming 2s;

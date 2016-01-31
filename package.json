@@ -12,6 +12,7 @@
     "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.6",
     "react-router": "^2.0.0-rc5",
+    "react-youtube": "^5.0.0",
     "resolve-url-loader": "^1.4.3"
   },
   "devDependencies": {
