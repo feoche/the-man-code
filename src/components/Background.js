@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Background = ({ children }) => {
-  const lists = Array.apply(null, Array(6)).map(() => <li/>);
+  const lists = Array.apply(null, new Array(6)).map(() => <li/>);
   return (
     <div>
       {children}

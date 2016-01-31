@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
+import classnames from 'classnames';
+
+import firebaseRoot from '../firebaseRoot';
+
+import ProgressBar from '../components/ProgressBar';
 
 export default class Game extends Component {
   constructor() {
@@ -7,13 +12,24 @@ export default class Game extends Component {
     this.state = {
       nextQuestion: false,
       showSolution: false,
-      situationUrl: 'U6HvY9GPApk',
-      answerUrl: '2g811Eo7K8U'
-    }
+      selectedAnswer: null,
+      currentQuestionIndex: 0,
+      questions: null,
+    };
   }
 
   componentWillMount() {
-    console.log('fetch data here');
+    firebaseRoot.child('questions').once("value", (data) => {
+      this.setState({
+        questions: data.val(),
+      });
+    });
+  }
+
+  selectItem(number) {
+    this.setState({
+      selectedAnswer: number,
+    });
   }
 
   showSolutionVideo() {
@@ -25,6 +41,28 @@ export default class Game extends Component {
   }
 
   render() {
+    const { currentQuestionIndex, questions, selectedAnswer } = this.state;
+
+    if(!questions) {
+      return <div>Loading</div>;
+    }
+
+    const currentQuestion = questions[currentQuestionIndex];
+
+    const answers = currentQuestion.answers.map((answer, i) => {
+      const selectedOrSolutionClasses = this.state.showSolution ? {
+        'success': i === currentQuestion.winningAnswer,
+        'error': selectedAnswer === i && i !== currentQuestion.winningAnswer,
+      } : { 'active': selectedAnswer === i };
+      const classNames = classnames('item', selectedAnswer !== null ? selectedOrSolutionClasses : false);
+
+      return (
+        <span>
+          <a onClick={() => this.selectItem(i)} className={classNames}>{answer.label}</a>
+        </span>
+      );
+    });
+
     const opts = {
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autohide: 1,
@@ -40,42 +78,22 @@ export default class Game extends Component {
         theme: 'dark'
       }
     };
-    const buttons = (
-      <div>
-        <span><a className="item error">Un beau gosse</a></span>
-        <span><a className="item active">Un quetard qui pique des Ferraris</a></span>
-        <span><a className="item success">Une moustache avant tout</a></span>
-        <span><a className="item">Obi-Wan Kenobi</a></span>
-      </div>
-    );
+
     return (
       <div className="game-main">
         <div className="visual">
           <YouTube
-            videoId={this.state.showSolution? this.state.answerUrl : this.state.situationUrl}
+            videoId={this.state.showSolution ? currentQuestion.answerUrl : currentQuestion.situationUrl}
             className="video"
             opts={opts}
             onEnd={this.showSolutionVideo.bind(this)}
             />
         </div>
-        <ul className="progress-bar">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li className="active"></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <ProgressBar steps={questions.length} current={currentQuestionIndex} />
         <div className="text">
-          <div className="question">
-            Je suis Tom Selleck, que suis-je vraiment?
-          </div>
+          <div className="question">{currentQuestion.label}</div>
           <div className="answers">
-            {this.state.nextQuestion ? <span><a className="item">Next&nbsp;&rarr;</a></span> : buttons}
+            {this.state.nextQuestion ? <span><a className="item">Next&nbsp;&rarr;</a></span> : answers}
           </div>
         </div>
       </div>

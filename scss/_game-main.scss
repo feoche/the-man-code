@@ -13,7 +13,7 @@
     max-height: 40%;
     background: url('https://s-media-cache-ak0.pinimg.com/originals/32/ae/4e/32ae4e3f48b62ff2b341e9f72c11134f.jpg');
     background-size: cover;
-    margin: 20px 20px 0;
+    margin: 20px;
     overflow: hidden;
 
     > .video {
@@ -27,7 +27,8 @@
   }
 
   .progress-bar {
-    margin: -1.5vw 0 -1.5vw -3.8vw;
+    margin: 0;
+    padding: 0;
 
     li {
       transition: all 0.1s;
