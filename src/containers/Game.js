@@ -68,7 +68,12 @@ export default class Game extends Component {
     if(!questions) {
       return (
         <div className="game-main">
-          <img src="http://itp.coleorloff.com/wp-content/uploads/2015/02/Seleck.png" alt="" />
+          <div className="magnum-spinner">
+            <div>
+              <img src={require('../../assets/img/seleck.png')} alt="" />
+              <p>Loading...</p>
+            </div>
+          </div>
         </div>
       );
     }

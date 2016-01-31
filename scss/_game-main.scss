@@ -1,12 +1,25 @@
 .game-main {
   background: #444;
   text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -2;
+  overflow: hidden;
+
+  .magnum-spinner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Yellowtail', cursive;
+    color: #fff;
+    font-size: 5vw;
+
+    img {
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
 
   .visual {
     max-width: 100%;
