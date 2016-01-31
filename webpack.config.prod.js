@@ -1,13 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'babel-polyfill',
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'static'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -22,7 +24,8 @@ module.exports = {
       compressor: {
         warnings: false
       }
-    })
+    }),
+    new ExtractTextPlugin("[name].css")
   ],
   module: {
     loaders: [{
@@ -31,7 +34,7 @@ module.exports = {
       include: path.join(__dirname, 'src')
     },{
       test: /\.scss$/,
-      loader: 'style!css?sourceMap!sass?sourceMap',
+      loader: ExtractTextPlugin.extract('style-loader', 'css?sourceMap!sass?sourceMap'),
       include: path.join(__dirname, 'scss')
     },{
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
