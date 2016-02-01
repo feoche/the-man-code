@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { browserHistory as history } from 'react-router';
+import { history } from '../routes';
 import firebaseRoot from '../firebaseRoot';
 
 export default class Highscores extends Component {

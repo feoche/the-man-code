@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { browserHistory as history } from 'react-router';
+import { history } from '../routes';
 import Sound from 'react-sound';
 import Background from '../components/Background';
 import Title from '../components/Title';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
 import classnames from 'classnames';
-import { browserHistory as history } from 'react-router';
+import { history } from '../routes';
 
 import firebaseRoot from '../firebaseRoot';
 

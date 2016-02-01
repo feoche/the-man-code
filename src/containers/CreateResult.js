@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory as history } from 'react-router';
 
 export default class CreateResult extends Component {
   render() {

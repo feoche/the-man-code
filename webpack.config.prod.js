@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'bundle.js',
-    publicPath: 'static/'
+    publicPath: '/the-man-code/static/'
   },
   postcss: function () {
     return [autoprefixer];
