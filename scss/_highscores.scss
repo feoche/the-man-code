@@ -27,6 +27,27 @@
     }
   }
 
+  .magnum-spinner {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Yellowtail', cursive;
+    color: #fff;
+    font-size: 5vw;
+    margin-top: 20px;
+
+    img {
+      animation: spin 1s linear infinite;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
   .table {
     display: table;
     width: 100%;
