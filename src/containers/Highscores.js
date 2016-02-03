@@ -6,7 +6,8 @@ export default class Highscores extends Component {
   constructor() {
     super();
     this.state = {
-      rows: {}
+      rows: {},
+      retrieveRows: false
     };
   }
 
@@ -14,6 +15,7 @@ export default class Highscores extends Component {
     var ref = firebaseRoot.child("scores");
     ref.orderByChild("score").on("value", (data) => {
       this.setState({rows: data.val()});
+      this.setState({retrieveRows: true});
     });
   }
 
@@ -26,6 +28,11 @@ export default class Highscores extends Component {
       <div className="highscores">
         <div className="container">
           <h1>Highscores</h1>
+          {this.state.retrieveRows ? '' : (
+            <div className="magnum-spinner">
+              <img src={require('../../assets/img/seleck.png')} alt=""/>
+            </div>
+          )}
           <div className="table">
             {Object.keys(this.state.rows).map((key) => (
               <div className="row">
