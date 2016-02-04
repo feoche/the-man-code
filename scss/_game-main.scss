@@ -102,6 +102,15 @@
     text-align: center;
     background: #444;
     margin-top: -1.3vw;
+    position: relative;
+
+    .progress {
+      position: absolute;
+      font-family: 'Monoton';
+      color: white;
+      font-size: 3vw;
+      top: 10px;
+    }
 
     .question {
       font-family: 'Yellowtail', cursive;
