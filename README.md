@@ -12,3 +12,6 @@ open http://localhost:1337
 ```bash
 npm build
 ```
+
+## Todo-list
+- [ ] End round when user clicks on a response
