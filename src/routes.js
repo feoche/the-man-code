@@ -6,7 +6,11 @@ import Create from './containers/Create';
 import CreateResult from './containers/CreateResult';
 import Highscores from './containers/Highscores';
 
-export { hashHistory as history } from 'react-router';
+import { createHistory, useBasename } from 'history';
+
+export const history = useBasename(createHistory)({
+  basename: '/the-man-code'
+});
 
 export const routes = {
   path: '/',
