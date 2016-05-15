@@ -37,7 +37,7 @@ export default class Highscores extends Component {
             {Object.keys(this.state.rows).map((key) => (
               <div className="row">
               <span className="column">
-                <a href="https://twitter.com/{this.state.rows[key].username}">@{this.state.rows[key].username}</a>
+                <a href={`https://twitter.com/${this.state.rows[key].username}`}>@{this.state.rows[key].username}</a>
               </span>
               <span className="column">
                 {this.state.rows[key].score}
